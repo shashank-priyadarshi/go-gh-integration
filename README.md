@@ -1,1 +1,1 @@
-"# go-gh-integration" 
+# go-gh-integration
