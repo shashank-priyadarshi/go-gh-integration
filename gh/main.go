@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-func Main() {
+func Main() ([]byte, error) {
 	fmt.Println("Inside Main function")
 
 	repoCount, repoList, scmActivity := fetchRepoWiseData()
@@ -24,8 +24,8 @@ func Main() {
 		},
 		WeekData: scmActivity,
 	}
-	fmt.Println(gitHubData)
-	fmt.Println("Plugin executed successfully!")
+	fmt.Println("Plugin executed completed!")
+	return json.Marshal(gitHubData)
 }
 
 func fetchRepoWiseData() (int, []RepoList, []SCMActivity) {

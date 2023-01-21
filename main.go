@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"main/gh"
 )
@@ -12,5 +13,21 @@ import (
 
 func main() {
 	fmt.Println("Plugin execution started...")
-	gh.Main()
+	rawData, err := gh.Main()
+	if err != nil {
+		panic(err)
+	}
+
+	var githubData gh.GitHubData
+	err = json.Unmarshal(rawData, &githubData)
+	if err != nil {
+		panic(err)
+	}
+
+	prettyJSON, err := (json.MarshalIndent(githubData, "", "  "))
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(prettyJSON))
+	fmt.Println("Data fetched successfully!")
 }
