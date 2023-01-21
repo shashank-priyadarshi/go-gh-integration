@@ -24,7 +24,7 @@ func Main() ([]byte, error) {
 		},
 		WeekData: scmActivity,
 	}
-	fmt.Println("Plugin executed completed!")
+	fmt.Println("Plugin execution completed!")
 	return json.Marshal(gitHubData)
 }
 
