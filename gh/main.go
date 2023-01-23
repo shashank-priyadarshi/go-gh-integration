@@ -13,12 +13,13 @@ func Main() ([]byte, error) {
 	scmActivity, issues := getIssueData(scmActivity)
 
 	gitHubData := GitHubData{
-		Repo: Repo{
+		Repos: Repo{
 			List:  repoList,
 			Count: repoCount,
 		},
-		WeekData: scmActivity,
-		Issues:   issues,
+		WeekData:     scmActivity,
+		Issues:       issues,
+		StarredRepos: fetchStarredRepos(),
 	}
 	fmt.Println("Plugin execution completed!")
 	return json.Marshal(gitHubData)

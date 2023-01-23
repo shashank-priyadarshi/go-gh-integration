@@ -7,13 +7,9 @@ import (
 	"main/mongo"
 )
 
-// list of starred repos, with links
-// commit history for past week
+// list of recent active repos with links
 // loc history for past week
 // pr history for past week
-// closed issues count for past week
-// open issues list for past week
-// all data for user as well as org repos
 
 func main() {
 	fmt.Println("Plugin execution started...")

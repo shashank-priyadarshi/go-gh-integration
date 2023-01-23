@@ -40,9 +40,10 @@ type IssueRequest struct {
 }
 
 type GitHubData struct {
-	Repo     Repo          `json:"repo"`
-	Issues   []Issue       `json:"issues"`
-	WeekData []SCMActivity `json:"weekdata"`
+	Repos        Repo          `json:"repos"`
+	StarredRepos Repo          `json:"starredrepos"`
+	Issues       []Issue       `json:"issues"`
+	WeekData     []SCMActivity `json:"weekdata"`
 }
 
 type Repo struct {
@@ -51,7 +52,8 @@ type Repo struct {
 }
 
 type RepoList struct {
-	Name string `json:"name"`
+	Name    string `json:"name"`
+	RepoURL string `json:"repourl"`
 }
 
 type SCMActivity struct {
