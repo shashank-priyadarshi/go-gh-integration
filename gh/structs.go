@@ -6,6 +6,9 @@ type RepoResponse struct {
 	Owner struct {
 		Login string `json:"login"`
 	} `json:"owner"`
+	Forked     bool   `json:"fork"`
+	CommitsURL string `json:"commits_url"`
+	PRURL      string `json:"pulls_url"`
 }
 
 type CommitResponse struct {
@@ -38,6 +41,7 @@ type IssueRequest struct {
 
 type GitHubData struct {
 	Repo     Repo          `json:"repo"`
+	Issues   []Issue       `json:"issues"`
 	WeekData []SCMActivity `json:"weekdata"`
 }
 
@@ -51,14 +55,14 @@ type RepoList struct {
 }
 
 type SCMActivity struct {
-	PR           int      `json:"pr"`
-	LOC          int      `json:"loc"`
-	Date         string   `json:"date"`
-	Commit       int      `json:"commit"`
-	Issues       []Issues `json:"issues"`
-	ClosedIssues int      `json:"closed_issues"`
+	PR           int     `json:"pr"`
+	LOC          int     `json:"loc"`
+	Date         string  `json:"date"`
+	Commit       int     `json:"commit"`
+	Issues       []Issue `json:"issues"`
+	ClosedIssues int     `json:"closed_issues"`
 }
 
-type Issues struct {
+type Issue struct {
 	Title string `json:"title"`
 }
