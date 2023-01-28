@@ -9,7 +9,11 @@ import (
 func Main() ([]byte, error) {
 	fmt.Println("Inside Main function")
 
-	loc, _ := time.LoadLocation("Asia/Kolkata")
+	loc, err := time.LoadLocation("Asia/Kolkata")
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("Location: ", loc)
 
 	repoCount, repoList, scmActivity := fetchRepoWiseData()
 	scmActivity, issues := getIssueData(scmActivity)
