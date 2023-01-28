@@ -9,6 +9,8 @@ import (
 func Main() ([]byte, error) {
 	fmt.Println("Inside Main function")
 
+	loc, _ := time.LoadLocation("Asia/Kolkata")
+
 	repoCount, repoList, scmActivity := fetchRepoWiseData()
 	scmActivity, issues := getIssueData(scmActivity)
 
@@ -20,6 +22,7 @@ func Main() ([]byte, error) {
 		WeekData:     scmActivity,
 		Issues:       issues,
 		StarredRepos: fetchStarredRepos(),
+		Time:         time.Now().In(loc),
 	}
 	fmt.Println("Plugin execution completed!")
 	return json.Marshal(gitHubData)

@@ -1,5 +1,7 @@
 package gh
 
+import "time"
+
 type RepoResponse struct {
 	Name  string `json:"name"`
 	URL   string `json:"html_url"`
@@ -40,6 +42,7 @@ type IssueRequest struct {
 }
 
 type GitHubData struct {
+	Time         time.Time     `json:"execution_time"`
 	Repos        Repo          `json:"repos"`
 	StarredRepos Repo          `json:"starredrepos"`
 	Issues       []Issue       `json:"issues"`
