@@ -45,7 +45,7 @@ type GitHubData struct {
 	Time         time.Time     `json:"execution_time"`
 	Repos        Repo          `json:"repos"`
 	StarredRepos Repo          `json:"starredrepos"`
-	Issues       []Issue       `json:"issues"`
+	Issues       []string      `json:"issues"`
 	WeekData     []SCMActivity `json:"weekdata"`
 }
 

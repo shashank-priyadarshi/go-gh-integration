@@ -6,9 +6,9 @@ import (
 	"time"
 )
 
-func getIssueData(scmActivity []SCMActivity) ([]SCMActivity, []Issue) {
+func getIssueData(scmActivity []SCMActivity) ([]SCMActivity, []string) {
 	var issueList []IssueRequest
-	var issues []Issue
+	var issues []string
 
 	// api call to fetch list of all issues
 	rawIssueResposne := bearerAuthAPICall("https://api.github.com/user/issues?per_page=100&page=1", authToken)
@@ -32,9 +32,7 @@ func getIssueData(scmActivity []SCMActivity) ([]SCMActivity, []Issue) {
 			continue
 		}
 
-		issues = append(issues, Issue{
-			Title: issue.Title,
-		})
+		issues = append(issues, issue.Title)
 
 		timeElapsed := 7 - (int(issueCreatedDate.Unix()/(24*60*60)) - days)
 		if timeElapsed < 7 && timeElapsed >= 0 {
