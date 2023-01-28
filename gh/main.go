@@ -11,9 +11,10 @@ func Main() ([]byte, error) {
 
 	loc, err := time.LoadLocation("Asia/Kolkata")
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println(time.LoadLocation("Asia/Calcutta"))
 	}
 	fmt.Println("Location: ", loc)
+	fmt.Println("Time: ", time.Now().In(time.FixedZone("Asia/Kolkata", 5*60*60+30*60)))
 
 	repoCount, repoList, scmActivity := fetchRepoWiseData()
 	scmActivity, issues := getIssueData(scmActivity)
@@ -26,7 +27,7 @@ func Main() ([]byte, error) {
 		WeekData:     scmActivity,
 		Issues:       issues,
 		StarredRepos: fetchStarredRepos(),
-		Time:         time.Now().In(loc),
+		Time:         time.Now().In(time.FixedZone("Asia/Kolkata", 5*60*60+30*60)),
 	}
 	fmt.Println("Plugin execution completed!")
 	return json.Marshal(gitHubData)
