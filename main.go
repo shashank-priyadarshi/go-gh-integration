@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"main/gh"
 	"main/mongo"
+	"os"
 )
 
 // list of recent active repos with links
@@ -24,7 +25,15 @@ func main() {
 		panic(err)
 	}
 
-	err = mongo.StartConnection(githubData)
+	gitHubDataCollection, issueCollection := os.Getenv("GITHUB_DATA"), os.Getenv("ISSUE_DATA")
+
+	err = mongo.StartConnection(gitHubDataCollection, githubData)
+	if err != nil {
+		panic(err)
+	}
+	err = mongo.StartConnection(issueCollection, struct {
+		Issues []string `json:"issues"`
+	}{Issues: githubData.Issues})
 	if err != nil {
 		panic(err)
 	}

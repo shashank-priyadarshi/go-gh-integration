@@ -15,7 +15,7 @@ RUN go build -o app ./server
 FROM alpine:3.14 as production
 ENV DB_NAME=""
 ENV GITHUB_TOKEN=""
-ENV MongoURI=""
+ENV MONGO_URI=""
 ENV COLLECTION_NAME=""
 # Add certificates
 RUN apk add --no-cache ca-certificates

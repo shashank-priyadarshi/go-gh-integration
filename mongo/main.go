@@ -14,7 +14,7 @@ var db *mongo.Database
 
 func setMongoConnection() *mongo.Client {
 	// Set client options
-	clientOptions := options.Client().ApplyURI(os.Getenv("MongoURI"))
+	clientOptions := options.Client().ApplyURI(os.Getenv("MONGO_URI"))
 
 	// Connect to MongoDB
 	client, err := mongo.Connect(context.TODO(), clientOptions)
@@ -46,10 +46,10 @@ func writeDataToCollection(collection *mongo.Collection, gitHubData interface{})
 	return err
 }
 
-func StartConnection(gitHubData interface{}) error {
+func StartConnection(collectionName string, gitHubData interface{}) error {
 	client := setMongoConnection()
 	db = client.Database(os.Getenv("DB_NAME"))
 
-	err := writeDataToCollection(db.Collection(os.Getenv("COLLECTION_NAME")), gitHubData)
+	err := writeDataToCollection(db.Collection(collectionName), gitHubData)
 	return err
 }
